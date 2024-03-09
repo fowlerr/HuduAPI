@@ -73,8 +73,16 @@ function Set-HuduAsset {
         [string]$Slug
     )
     $Object = Get-HuduAssets -id $Id | Select-Object name,asset_layout_id,company_id,slug,primary_serial,primary_model,primary_mail,id,primary_manufacturer,@{n='custom_fields';e={$_.fields | ForEach-Object {[pscustomobject]@{$_.label.replace(' ','_').tolower()= $_.value}}}}
+    # If the company_id is being changed, we need to store the old company_id
+    if ($CompanyId -and $Object.company_id -ne $CompanyId){
+        $oldCompany = $Object.company_id
+        $Object.company_id = $CompanyId
+        $CompanyId = $oldCompany
+    } else {
+        $CompanyId = $Object.company_id
+    }
     $Asset = [ordered]@{asset = $Object }
-    $CompanyId = $Object.company_id
+    #$CompanyId = $Object.company_id
 
     if ($Name) {
         $Asset.asset.name = $Name
