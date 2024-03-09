@@ -28,7 +28,7 @@ function Get-HuduIPAddresses {
 
     .EXAMPLE
     Get-HuduIPAddresses -CompanyId 1 -Status 'Active'
-    
+
 
     #>
     [CmdletBinding()]
@@ -76,7 +76,7 @@ function Get-HuduIPAddresses {
             Method   = 'GET'
             Params   = $Params
         }
-        Invoke-HuduRequestPaginated -HuduRequest $HuduRequest -Property 'ip_addresses' -PageSize 25
+        Invoke-HuduRequest @HuduRequest
         
     }
 
