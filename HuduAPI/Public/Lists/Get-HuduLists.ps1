@@ -37,6 +37,6 @@ function Get-HuduLists {
 
     if ($query -or $name) { $HuduRequest.Params = $Params }   
 
-    Invoke-HuduRequestPaginated -HuduRequest $HuduRequest -Property 'lists'
+    Invoke-HuduRequest @HuduRequest
 
 }
