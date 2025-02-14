@@ -24,7 +24,7 @@ function New-HuduList {
     $body = [PSCustomObject]@{
         list = @{
             name = $name
-            list_items_attributes = $list_items_attributes
+            list_items_attributes = ($list_items_attributes | ForEach-Object { [PSCustomObject]@{ name = $_ } })
         }
     }
 
