@@ -22,10 +22,9 @@ function Remove-HuduList {
     }
 
 
-    $listToDelete = Get-HuduList -id $id
+    $listToDelete = Get-HuduLists -id $id
 
-    if ($listToDelete -and $PSCmdlet.ShouldProcess($listToDelete.name)) {
-        
+    if ($listToDelete -and $PSCmdlet.ShouldProcess($listToDelete.name)) {        
         Invoke-HuduRequest @HuduRequest    
     }
 }
