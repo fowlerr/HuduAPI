@@ -6,13 +6,25 @@ Including the modulebuilder which takes all of the ps1 files and combines them i
 The playtyPS is used to build the markdown help files for the module.
 
 #>
+Param (
+	[version]
+	$Version="2025.2.14.1",
+	
+	[switch]
+	$OverwriteUserModule,
+
+	[switch]
+	$UpdateDocumentation
+
+
+)
 $params = @{
 	SourcePath = "$($PSScriptRoot)\HuduAPI\HuduAPI.psd1"
 	CopyPaths = "$($PSScriptRoot)\README.md"
 	Version = $Version
 	UnVersionedOutputDirectory = $true
 	OutputDirectory = "$($PSScriptRoot)\Output"
-	#PublicFilter = @("Public","Private")
+	PublicFilter = @("Public","Private")
 }
 Build-Module @params -Verbose
 
@@ -24,12 +36,12 @@ if ($params.UnVersionedOutputDirectory -eq $true ) {
 
 
 if ([System.IO.File]::Exists("$($OutputDirectory)\HuduAPI.psm1")) {
-	Add-Content -Path "$($OutputDirectory)\HuduAPI.psm1" -Value "Invoke-HuduAPIStartup"
+	#Add-Content -Path "$($OutputDirectory)\HuduAPI.psm1" -Value "Invoke-HuduAPIStartup"
 }
 
 if ($OverwriteUserModule -eq $true) {	
 	$UserModulePath = "$($env:USERPROFILE)\Documents\PowerShell\Modules"
-	Write-Host "Copying MerakiAPI Files to $($UserModulePath)\HuduAPI" -ForegroundColor Green
+	Write-Host "Copying HuduAPI Files to $($UserModulePath)\HuduAPI" -ForegroundColor Green
 	Copy-Item "$($OutputDirectory)" -Destination $UserModulePath -Force -Recurse
 }
 
