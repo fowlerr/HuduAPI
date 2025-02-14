@@ -13,7 +13,12 @@ function Set-HuduList {
     This is to update the list items of the list.  If you want to add an item include it without id.  If you want to remove an item include the id and _destroy = true.
 
     .EXAMPLE
-    Set-HuduList -id '1' -name 'test' -list_items_attributes @([PSCustomObject]@{id='1'; name='updated item'}, [PSCustomObject]@{name='New Items'}, [PSCustomObject]@(id=2;_destroy=$true))
+    $listItems = @(
+        [PSCustomObject]@{id=833; name='updated item'},
+        [PSCustomObject]@{name='New Items'},
+        [PSCustomObject]@{id=834;_destroy=$true}
+    )
+    Set-HuduList -id 20 -name 'testing20nameChange' -list_items_attributes $listItems
 
 
     #>
