@@ -1,4 +1,15 @@
 function Remove-HuduList {
+    <#
+    .DESCRIPTION
+    Delete a list.
+
+    .PARAMETER id
+    The ID of the list to delete.
+
+    .EXAMPLE
+    Remove-HuduList -id '1'
+    
+    #>
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact='High')]
     param (
         [string]

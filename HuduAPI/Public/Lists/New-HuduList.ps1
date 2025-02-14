@@ -1,4 +1,17 @@
 function New-HuduList {
+    <#
+    .DESCRIPTION
+    Create a new list.
+
+    .PARAMETER name
+    The name of the list.
+
+    .PARAMETER list_items_attributes
+    A string array of list items to add to the list.
+
+    .EXAMPLE
+    New-HuduList -name 'test' -list_items_attributes 'item1', 'item2'
+    #>
     [CmdletBinding()]
     param (
         [string]

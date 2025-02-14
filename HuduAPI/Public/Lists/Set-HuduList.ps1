@@ -1,4 +1,22 @@
-function Update-HuduList {
+function Set-HuduList {
+    <#
+    .DESCRIPTION
+    Update a list.
+
+    .PARAMETER id
+    The ID of the list to update.
+
+    .PARAMETER name
+    This is to update the name of the list.
+
+    .PARAMETER list_items_attributes
+    This is to update the list items of the list.  If you want to add an item include it without id.  If you want to remove an item include the id and _destroy = true.
+
+    .EXAMPLE
+    Set-HuduList -id '1' -name 'test' -list_items_attributes @([PSCustomObject]@{id='1'; name='updated item'}, [PSCustomObject]@{name='New Items'}, [PSCustomObject]@(id=2;_destroy=$true))
+
+
+    #>
     [CmdletBinding()]
     param (
         [string]
@@ -7,7 +25,7 @@ function Update-HuduList {
         [string]
         $name,
 
-        [string[]]
+        [PSCustomObject[]]
         $list_items_attributes
     )
 
