@@ -30,11 +30,12 @@ function Set-HuduList {
     )
 
     $body = [PSCustomObject]@{
-        list = @{
-            name = $name
+        list = @{            
             list_items_attributes = $list_items_attributes
         }
     }
+
+    if ($name) { $body.list | Add-Member -NotePropertyName name -NotePropertyValue $name }
 
     # Prevent unboxing of single-item arrays, using pipeline will unbox single-item arrays
     $JSON = ConvertTo-Json -Depth 10 -InputObject $body
