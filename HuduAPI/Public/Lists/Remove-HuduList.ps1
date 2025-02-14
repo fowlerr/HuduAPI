@@ -13,18 +13,17 @@ function Remove-HuduList {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact='High')]
     param (
         [string]
-        $id
+        $name
     )
 
-    $HuduRequest = @{
-        Resource = "/api/v1/lists/$list_id"
-        Method   = 'DELETE'
-    }
+    $listToDelete = Get-HuduLists -name $name
 
-
-    $listToDelete = Get-HuduLists -id $id
-
-    if ($listToDelete -and $PSCmdlet.ShouldProcess($listToDelete.name)) {        
+    if ($listToDelete -and $PSCmdlet.ShouldProcess($listToDelete.name)) {       
+        $HuduRequest = @{
+            Resource = "/api/v1/lists/$($listToDelete.id)"
+            Method   = 'DELETE'
+        }                 
+        
         Invoke-HuduRequest @HuduRequest    
     }
 }
