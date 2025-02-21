@@ -7,7 +7,8 @@ function Remove-HuduList {
     The ID of the list to delete.
 
     .EXAMPLE
-    Remove-HuduList -id '1'
+    Remove-HuduList -name testing
+    This will delete the list with the name 'testing'.
     
     #>
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact='High')]

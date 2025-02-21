@@ -19,6 +19,7 @@ function Set-HuduList {
         [PSCustomObject]@{id=834;_destroy=$true}
     )
     Set-HuduList -id 20 -name 'testing20nameChange' -list_items_attributes $listItems
+    This will update the list with the id of 20 to have the name 'testing20nameChange' and the list items of 'updated item', 'New Items', and remove the item with the id of 834.
 
 
     #>
